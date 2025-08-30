@@ -1,6 +1,8 @@
 name: "Verificações de código"
 
 on:
+  push:
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
