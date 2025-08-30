@@ -12,7 +12,7 @@ COPY ./go.sum /app/go.sum
 
 RUN go build main.go
 
-FROM alpine:latest AS production
+FROM golang:1.22-alpine AS production
 
 EXPOSE 8080
 
@@ -27,6 +27,14 @@ ENV DB_PORT 5432
 
 COPY ./assets/ /app/assets/
 COPY ./templates/ /app/templates/
+COPY ./main.go /app/main.go
+COPY ./main_test.go /app/main_test.go
+COPY ./controllers/ /app/controllers/
+COPY ./database/ /app/database/
+COPY ./models/ /app/models/
+COPY ./routes/ /app/routes/
+COPY ./go.mod /app/go.mod
+COPY ./go.sum /app/go.sum
 
 COPY --from=build /app/main /app/main
 
